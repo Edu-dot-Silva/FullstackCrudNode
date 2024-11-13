@@ -1,0 +1,16 @@
+nome do banco: lista_tarefas_ads_a
+
+nome da tabela: tarefas e usuarios
+
+usuarios: id	nome	senha
+tarefas: id	usuario_id	titulo	descricao	status	data_criacao	
+
+fazendo um join com as duas tabelas
+
+select tarefas.id as tarefa_id,
+tarefas.titulo,
+tarefas.descricao,
+tarefas.status,
+tarefas.data_criacao,
+usuarios.nome
+from tarefas join usuarios on tarefas.usuario_id = usuario_id;
