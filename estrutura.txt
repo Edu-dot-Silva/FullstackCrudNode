@@ -1,0 +1,14 @@
+estrutura
+
+tela de login
+menu principal
+
+apartir do menu
+tarefas:
+adicionar e listas
+
+usuarios:
+adicionar usuarios e listar usuarios
+
+select para atribuir usuario a tarefa
+

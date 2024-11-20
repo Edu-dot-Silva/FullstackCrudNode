@@ -1,11 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Usuarios</title>
+    <title>Lista de Usuários</title>
+    <link rel="stylesheet" href="./css/lista_Usuarios.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Lista de Usuários</h1>
+        <table id="tabelaUsuarios">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Senha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os dados serão preenchidos dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Função para carregar os usuários
+        function carregarUsuarios() {
+            // Realiza a requisição ao endpoint usando Fetch API
+            fetch('http://localhost:3000/api/usuarios')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao buscar usuários');
+                    }
+                    return response.json(); // Converte a resposta para JSON
+                })
+                .then(data => {
+                    const tabelaBody = document.querySelector('#tabelaUsuarios tbody');
+                    tabelaBody.innerHTML = ''; // Limpa a tabela antes de preencher
+
+                    // Itera sobre os usuários e cria as linhas da tabela
+                    data.forEach(usuario => {
+                        const linha = document.createElement('tr');
+
+                        const colunaId = document.createElement('td');
+                        colunaId.textContent = usuario.id;
+
+                        const colunaNome = document.createElement('td');
+                        colunaNome.textContent = usuario.nome;
+
+                        const colunaEmail = document.createElement('td');
+                        colunaEmail.textContent = usuario.senha;
+
+                        linha.appendChild(colunaId);
+                        linha.appendChild(colunaNome);
+                        linha.appendChild(colunaEmail);
+
+                        tabelaBody.appendChild(linha);
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                    const tabelaBody = document.querySelector('#tabelaUsuarios tbody');
+                    tabelaBody.innerHTML = '<tr><td colspan="3">Erro ao carregar usuários</td></tr>';
+                });
+        }
+
+        // Carrega os usuários quando a página é carregada
+        window.onload = carregarUsuarios;
+    </script>
 </body>
 </html>

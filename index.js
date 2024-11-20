@@ -92,6 +92,17 @@ app.delete('/api/tarefas/:id', (req, res) => {
     });
 });
 
+// Rota para listar usuarios
+app.get('/api/usuarios',(req,res)=>{
+    const sql = 'select id,nome,senha from usuarios'
+    db.query(sql,(err,results)=>{
+        if(err){
+            console.error('Erro ao obter usuarios', err)
+            return res.status(500).send({error:'Erro ao listar Usuario'})
+        }
+        res.status(200).send(results)
+    })
+})
 
 
 app.listen(port, () => {

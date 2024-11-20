@@ -1,22 +1,74 @@
 <!DOCTYPE html>
-<html lang="pt_br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuario</title>
+    <title>Cadastrar Usuários</title>
+    <!-- Caminho relativo para o CSS -->
+    <link rel="stylesheet" href="./css/cadastroUsuario.css">
 </head>
 <body>
-    <h1>Cadastro de Usuarios</h1>
+    <div class="container">
+        <h1>Cadastrar Usuários</h1>
+        
+        <!-- Formulário para cadastro de usuários -->
+        <form id="formUsuario">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" placeholder="Digite o nome" required>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" placeholder="Digite a senha" required>
+            
+            <button type="submit">Cadastrar</button>
+        </form>
 
-    <form id="formCadastro">
-    <label for="usuario">Usuario</label>
-    <input type="text" name="usuario" id="usuario" required>
-    <label for="senha">Senha</label>
-    <input type="text" name="senha" id="senha" required>
+        <!-- Área para exibir mensagens de sucesso ou erro -->
+        <div id="mensagem"></div>
+    </div>
 
-    <button type="submit">Cadastrar</button>
-    <a href="principal.html"><button>Voltar</button></a>
-</form>
-<script src="./js/cadastro.js"></script>
+    <script>
+        document.getElementById('formUsuario').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+            
+            // Obtém os valores dos campos do formulário
+            const nome = document.getElementById('nome').value;
+            const senha = document.getElementById('senha').value;
+
+            // Cria o objeto com os dados a serem enviados
+            const usuario = {
+                nome: nome,
+                senha: senha
+            };
+
+            // Envia os dados para o backend usando Fetch API
+            fetch('http://localhost:3000/api/usuarios', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(usuario)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao cadastrar usuário');
+                }
+                return response.json(); // Converte a resposta para JSON
+            })
+            .then(data => {
+                // Exibe uma mensagem de sucesso
+                document.getElementById('mensagem').innerHTML = `
+                    <p style="color: green;">${data.message}</p>
+                `;
+                // Reseta o formulário
+                document.getElementById('formUsuario').reset();
+            })
+            .catch(error => {
+                // Exibe uma mensagem de erro
+                document.getElementById('mensagem').innerHTML = `
+                    <p style="color: red;">${error.message}</p>
+                `;
+            });
+        });
+    </script>
 </body>
 </html>
