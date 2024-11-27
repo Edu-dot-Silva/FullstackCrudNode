@@ -104,6 +104,27 @@ app.get('/api/usuarios',(req,res)=>{
     })
 })
 
+// rota para login/endpoint
+app.post('/api/login',(req,res)=>{
+    const {nome,senha} = req.body //dados enviados pelo cliente
+    //querry para verificar se o usuario e senha estao corretos
+    const sql = 'select * from usuarios where nome = ? and senha = ?';
+    db.query(sql,[nome,senha],(err,results)=>{
+        if(err){
+            console.error("Erro ao verificar login", err)
+            return res.status(500).send({error: "Erro interno do Servidor"})
+        }
+        if(results.length > 0){
+            res.status(200).send({message: "Login bem sucedido"})
+        }else{
+            res.status(401).send({error: "Usuario ou Senha Incorretos"})
+        }
+
+    })
+
+})
+
+
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);

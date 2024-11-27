@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Poiret+One&display=swap');
+
+body{
+  font-family: "Afacad Flux", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  text-align: center;
+  font-size: 18px;
+  background-color: #f3ffeb;
+}
+.input{
+    font-family: "Afacad Flux", serif;
+    width: 150px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    text-align: center;
+    font-size: 16px;
+    
+}
+.btn{
+    font-family: "Afacad Flux", serif;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 100px;
+    height: 24px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #3ddb8f;
+    color: white;
+
+}
+.mensagem_erro{
+color: red;
+}
+label{
+    font-weight: bold;
+}
+
+

@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Poiret+One&display=swap');
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-family: "Afacad Flux", serif;
+    height: 800px;
+    background-color: #f3ffeb;
+
+}
+button{
+    display: block;
+    width: 250px;
+    height: 42px;
+    text-align: center;
+    font-family: "Afacad Flux", serif;
+    font-size: 18px;
+    margin: 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn_cadastro{
+color: white;
+background-color:#0074b4;
+transition: all ease-in-out 0.3s;
+}
+.btn_cadastro:hover{
+    background-image: url(/adicionar.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+.btn_tarefas{
+color: white;
+background-color:#cc3747 ;
+}
+.btn_usuarios{
+color: white;
+background-color: #f07c19;
+}
